@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Param Chawla | Electronics & Computer Science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #f5f7fa, #e4e8eb, #dee2e6, #ced4da);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Glass Morphism Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header Section */
+        header {
+            padding: 4rem 0 3rem;
+            text-align: center;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--secondary);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-links a:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Section Styling */
+        section {
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        h2:hover::after {
+            width: 100px;
+        }
+        
+        /* Timeline Style Education */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10px;
+            height: 100%;
+            width: 2px;
+            background: var(--secondary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--secondary);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--secondary);
+        }
+        
+        .timeline-item:hover::before {
+            background: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent);
+            transform: scale(1.1);
+        }
+        
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 0.3rem;
+            display: inline-block;
+            background: rgba(52, 152, 219, 0.1);
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+        }
+        
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-category {
+            padding: 1.5rem;
+        }
+        
+        .skill-category h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .skill-category h3 i {
+            color: var(--secondary);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .skill-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        /* Certificates */
+        .certificates-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .certificate {
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .certificate::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .certificate:hover::after {
+            transform: scaleX(1);
+        }
+        
+        .certificate h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .certificate .issuer {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .certificate .date {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .certificate-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .certificate-link:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links a {
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .skills-grid, .certificates-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+    <body>
+    <div class="bg-animation"></div>
+    
+    <div class="container">
+        <header class="fade-in">
+            
+            <div class="profile-pic-container">
+                <img src="pcc.jpg" alt="Param Chawla" class="profile-pic">
+            </div>
+            <h1>Param Chawla</h1>
+            <p class="tagline">Electronics & Computer Science Engineer</p>
+            <div class="contact-links">
+                <a href="tel:+918168779579"><i class="fas fa-phone"></i> +91 8168779579</a>
+                <a href="https://www.linkedin.com/in/chawla-param/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/Param-don" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="mailto:paramchawla060606@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+            </div>
+        </header>
+        
+        <section id="about" class="glass-card fade-in delay-1">
+            <h2>About Me</h2>
+            <p>Driven by a passion for electronics and software, I am eager to explore the intersection of hardware and programming to create innovative solutions. Currently pursuing B.Tech in Electronics & Computer Science, I have a strong grasp of C, C++, Java, HTML, CSS, JavaScript, DBMS, and Data Structures in C, with a deep interest in embedded systems, microcontrollers, digital electronics, and circuit design.</p>
+        </section>
+        
+        <section id="education" class="glass-card fade-in delay-2">
+            <h2>Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">Jul 2023 - Aug 2027</span>
+                    <h3>Bachelor of Technology in Electronics & Computer Science</h3>
+                    <p>Kallinga Institute of Industrial Technology, Bhubaneswar</p>
+                    <p><strong>CGPA:</strong> 8.66</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-date">Apr 2022 - Mar 2023</span>
+                    <h3>CBSE (Class XII)</h3>
+                    <p>Dhruva Public School, Delhi</p>
+                    <p><strong>Percentage:</strong> 73.4%</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-date">Apr 2020 - Mar 2021</span>
+                    <h3>CBSE (Class X)</h3>
+                    <p>Delhi Public School, Sonipat</p>
+                    <p><strong>Percentage:</strong> 88.4%</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills" class="glass-card fade-in delay-1">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category glass-card">
+                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <ul class="skill-list">
+                        <li>C</li>
+                        <li>C++</li>
+                        <li>Java</li>
+                        <li>HTML/CSS</li>
+                        <li>JavaScript</li>
+                        <li>MySQL</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category glass-card">
+                    <h3><i class="fas fa-laptop-code"></i> Technical</h3>
+                    <ul class="skill-list">
+                        <li>Data Structures</li>
+                        <li>Web Development</li>
+                        <li>Problem Solving</li>
+                        <li>DBMS</li>
+                        <li>Full Stack Development</li>
+                        <li>Solution Architecture</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category glass-card">
+                    <h3><i class="fas fa-microchip"></i> Hardware</h3>
+                    <ul class="skill-list">
+                        <li>MATLAB</li>
+                        <li>TINA-TI</li>
+                        <li>VIVADO</li>
+                        <li>LAB VIEW</li>
+                        <li>PV Solar Modules</li>
+                        <li>Breadboard circuits</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category glass-card">
+                    <h3><i class="fas fa-users"></i> Soft Skills</h3>
+                    <ul class="skill-list">
+                        <li>Leadership</li>
+                        <li>Teamwork</li>
+                        <li>Adaptability</li>
+                        <li>Communication</li>
+                        <li>Discipline</li>
+                        <li>English & Hindi</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="experience" class="glass-card fade-in delay-2">
+            <h2>Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">2023 - Present</span>
+                    <h3>National Service Scheme (NSS) - Volunteer</h3>
+                    <ul class="skill-list">
+                        <li>Responsible for serving the community through social initiatives</li>
+                        <li>Led team during Bali Jatra ensuring waste management</li>
+                        <li>Coordinated with local authorities for smooth execution</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-date">2023</span>
+                    <h3>Graphic Designing Team (Freshers) - Lead</h3>
+                    <ul class="skill-list">
+                        <li>Oversaw creation of event branding and designs</li>
+                        <li>Designed backgrounds using Adobe After Effects and Canva</li>
+                        <li>Collaborated with team to ensure timely completion</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="certificates" class="glass-card fade-in delay-3">
+            <h2>Certificates</h2>
+            <div class="certificates-container">
+                <div class="certificate glass-card">
+                    <h3>CyberSecurity Analyst</h3>
+                    <span class="issuer">Tata Group</span>
+                    <span class="date">Jan 2025</span>
+                    <p>Completed practical tasks in IAM fundamentals, strategy assessment, and platform integration</p>
+                    <a href="gmf3ypEXBj2wvfQWC_ifobHAoMjQs9s6bKS_iQzoBiLhNTHn8tnYS_1738001997685_completion_certificate.pdf" class="certificate-link" target="_blank">
+                        View Certificate <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
+                <div class="certificate glass-card">
+                    <h3>Data Analytics & Visualization</h3>
+                    <span class="issuer">Accenture</span>
+                    <span class="date">Jan 2025</span>
+                    <p>Project understanding, data cleaning & modeling, visualization & storytelling</p>
+                    <a href="Accenture certificate.pdf" class="certificate-link" target="_blank">
+                        View Certificate <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
+                <div class="certificate glass-card">
+                    <h3>Solutions Architecture</h3>
+                    <span class="issuer">AWS</span>
+                    <span class="date">Jan 2025</span>
+                    <p>Designed simple, scalable hosting architecture solutions</p>
+                    <a href="AWS certificate.pdf" class="certificate-link" target="_blank">
+                        View Certificate <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
+                <div class="certificate glass-card">
+                    <h3>EV Engineering</h3>
+                    <span class="issuer">Ford EV</span>
+                    <span class="date">Jan 2025</span>
+                    <p>Assessed design tradeoffs and career paths in EV engineering</p>
+                    <a href="Ford certificate.pdf" class="certificate-link" target="_blank">
+                        View Certificate <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
+                <div class="certificate glass-card">
+                    <h3>DBMS Course</h3>
+                    <span class="issuer">Scaler</span>
+                    <span class="date">Mar 2025</span>
+                    <p>Mastered fundamentals and advanced database concepts</p>
+                    <a href="dbms.pdf" class="certificate-link" target="_blank">
+                        View Certificate <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer class="fade-in delay-3">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/chawla-param/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Param-don" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:paramchawla060606@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; 2025 Param Chawla. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <style>
+        
+        .profile-pic-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .profile-pic-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Update the existing profile-pic class */
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            display: block;
+        }
+
+        /* Update contact links to include GitHub */
+        .contact-links a {
+            /* [Keep existing styles] */
+            /* Add this to ensure equal spacing */
+            min-width: 120px;
+            justify-content: center;
+        }
+    </style>
+</body>
+</html>
